@@ -99,6 +99,9 @@ function createTmuxRunner(initialAutomaticRename = "on") {
 			return { stdout: `${currentName}\n` };
 		}
 		if (args[0] === "show-window-options") {
+			if (args.some((arg) => arg === "-q" || arg === "-qv")) {
+				throw new Error("command show-window-options: unknown flag -q");
+			}
 			return { stdout: `${automaticRename}\n` };
 		}
 		if (args[0] === "set-window-option") {

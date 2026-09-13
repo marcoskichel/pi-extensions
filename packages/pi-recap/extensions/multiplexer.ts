@@ -209,7 +209,7 @@ function createTmuxAdapter(runner: CommandRunner): MultiplexerAdapter<"tmux"> {
 				"tmux window name query",
 			);
 			const originalAutomaticRename = (
-				await runner("tmux", ["show-window-options", "-qv", "-t", windowId, "automatic-rename"])
+				await runner("tmux", ["show-window-options", "-v", "-t", windowId, "automatic-rename"])
 			).stdout.trim();
 			await runner("tmux", ["set-window-option", "-q", "-t", windowId, "automatic-rename", "off"]);
 			return { windowId, originalName, originalAutomaticRename };
